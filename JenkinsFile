@@ -13,7 +13,9 @@ pipeline{
         }
         stage('Build Image'){
             steps{
-                def app = docker.build("${DOCKER_IMAGE}")
+                script{
+                    def app = docker.build("${DOCKER_IMAGE}")
+                }
             }
         }
         stage('run test'){
