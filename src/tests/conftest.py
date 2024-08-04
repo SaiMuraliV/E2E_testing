@@ -1,3 +1,4 @@
+from time import sleep
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -7,7 +8,7 @@ import os
 path = os.path.dirname(__file__)
 sys.path.append(os.path.join(path, "..", ".."))
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def setup():
     options = [
         "--start-maximized",
@@ -18,4 +19,5 @@ def setup():
         chrome_options.add_argument(option)
     driver =  webdriver.Chrome(options=chrome_options)
     yield driver
+    sleep(5)
     driver.quit
