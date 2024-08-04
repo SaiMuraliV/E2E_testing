@@ -12,9 +12,13 @@ sys.path.append(os.path.join(path, "..", ".."))
 def setup():
     options = [
         "--start-maximized",
-        "--incognito"
+        "--incognito",
+        "--disable-gpu",
+        "--headless",
+        "--disable-extensions",
+        "--no-sandbox"
     ]
-    chrome_options = Options() 
+    chrome_options = Options()
     for option in options:
         chrome_options.add_argument(option)
     driver =  webdriver.Chrome(options=chrome_options)

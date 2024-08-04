@@ -1,9 +1,28 @@
 pipeline{
     agent any
+
+    environment{
+        DOCKER_IMAGE = "e2eimage:latest"
+    }
+
     stages {
         stage("checkout"){
             steps{
                 checkout scm
+            }
+        }
+        stage('Build Image'){
+            steps{
+                def app = docker.build("${DOCKER_IMAGE}")
+            }
+        }
+        stage('run test'){
+            steps{
+                script{
+                    docker.Image("${DOCKER_IMAGE}").inside{
+                        sh 'pytest'
+                    }
+                }
             }
         }
     }
