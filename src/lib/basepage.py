@@ -15,4 +15,8 @@ class BasePage():
     def click_element(self, locator):
         self.find_element(locator).click()
 
+    def input_text(self, locator, text):
+        self.find_element(locator).send_keys(text)
     
+    def get_text(self, locator):
+        return self.find_element(locator).text

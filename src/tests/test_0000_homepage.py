@@ -1,6 +1,7 @@
 import pytest
 from src.lib.homepage import HomePage
 
+@pytest.mark.HomePage
 class TestHomePage():
 
     def test_001(self, setup):
